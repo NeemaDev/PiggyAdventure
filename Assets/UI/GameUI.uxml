@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameUIStyle.uss?fileID=7433441132597879392&amp;guid=f55657d9f4f950441853fc47333711ba&amp;type=3#GameUIStyle" />
+    <ui:VisualElement name="HealthBarBackground" class="healthbar-size" style="flex-grow: 1; position: absolute; top: 20px; left: 20px; height: 50px; background-color: rgb(17, 50, 34); border-left-color: rgb(191, 184, 184); border-right-color: rgb(191, 184, 184); border-top-color: rgb(191, 184, 184); border-bottom-color: rgb(191, 184, 184); border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px;">
+        <ui:VisualElement name="HealthBarMask" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; overflow: hidden; transition-property: width; transition-duration: 0.5s; transition-timing-function: ease-out-bounce;">
+            <ui:VisualElement name="HealthBarFill" class="healthbar-size" style="flex-grow: 1; -unity-background-image-tint-color: rgb(255, 255, 255); position: absolute; height: 100%; background-color: rgb(12, 151, 85); overflow: visible;" />
+        </ui:VisualElement>
+        <ui:Label text="Label" name="HealthLabel" style="position: absolute; width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 28px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-left: 10px; color: rgb(229, 229, 229);" />
+    </ui:VisualElement>
+</ui:UXML>
