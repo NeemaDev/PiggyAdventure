@@ -1018,7 +1018,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  health: {fileID: 524824912}
+  health: {fileID: 0}
   minDistanceToPlayer: 0.75
   attackRange: 0.6
   attackCooldown: 1
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   attackableLayer:
     serializedVersion: 2
     m_Bits: 128
-  health: {fileID: 1328169747}
+  health: {fileID: 0}
   knockbackForce: 15
   knockbackDuration: 0.3
   attackCooldown: 0.5
