@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public LayerMask playerLayer;
+    public Health health;
     private float detectionRange = 2f;
     [SerializeField]
     private float minDistanceToPlayer = 0.5f;
@@ -13,8 +14,6 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private Animator animator;
-    private float maxHealth = 100f;
-    private float currentHealth;
     private bool canMove = true;
     private bool isMoving = true;
     private bool canAttack = true;
@@ -24,24 +23,14 @@ public class Enemy : MonoBehaviour
     private float attackCooldown = 1f;
     private float lastAttackTime;
     [SerializeField]
-    private float attackDamage = 20f;
+    private int attackDamage = 20;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
-        Debug.Log($"Enemy took {damage} damage. Remaining Health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            StartCoroutine(DamageStun());
-        }
+        StartCoroutine(DamageStun());
     }
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -49,11 +38,19 @@ public class Enemy : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        currentHealth = maxHealth;
+        health.OnDamaged += TakeDamage;
+        health.OnDeath += Die;
+
+        // currentHealth = maxHealth;
+    }
+
+    private void OnDisable()
+    {
+        health.OnDamaged -= TakeDamage;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!canMove && !canAttack)
         {
@@ -63,8 +60,6 @@ public class Enemy : MonoBehaviour
 
         float distanceToSpawn = Vector2.Distance(transform.position, spawnPosition);
         float distanceToPlayer = Vector2.Distance(transform.position, Player.PlayerTransform.position);
-
-        Debug.Log($"Distance to spawn {distanceToSpawn.ToString()}");
 
         // If close to spawn, stop moving and idle.
         if(distanceToSpawn <= 0.5f && !playerInRange())
@@ -141,7 +136,8 @@ public class Enemy : MonoBehaviour
             var player = hit.collider.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(attackDamage);
+                player.gameObject.GetComponent<Health>().ChangeHealth(-attackDamage);
+                player.TakeDamage();
             }
 
         }
