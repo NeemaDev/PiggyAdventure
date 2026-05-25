@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,41 +6,53 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
 
+    private Vector2 currentMoveInput = Vector2.zero;
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        MovePlayer();
+    }
+
+    public void OnMove(InputValue value)
+    {
+        // Save moving direction to trigger movement in update.
+        currentMoveInput = value.Get<Vector2>();
+    }
+
+    public void OnClick(InputValue value)
+    {
+        Vector2 mousePosition = Mouse.current.position.value;
+        targetPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        targetPosition.z = transform.position.z;
+
+        isMoving = true;
+    }
+
+    private void MovePlayer()
+    {
+        var movementDistance = moveSpeed * Time.deltaTime;
+
+        if (currentMoveInput != Vector2.zero)
         {
-            Vector3 mousePositionScreen = Mouse.current.position.value;
-            targetPosition = Camera.main.ScreenToWorldPoint(mousePositionScreen);
-            isMoving = true;
+            // Continuous movement while using WASD.
+            transform.position += (Vector3)currentMoveInput.normalized * movementDistance;
         }
-
-        if (Mouse.current.leftButton.isPressed)
+        else if (isMoving)
         {
-            Vector3 mousePositionScreen = Mouse.current.position.value; // Position in screen space.
-            targetPosition = Camera.main.ScreenToWorldPoint(mousePositionScreen); // Convert to world space.
-            targetPosition.z = transform.position.z;
-
-            if (isMoving)
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
             {
-                Vector3 direction = (targetPosition - transform.position).normalized;
-
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-                if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-                {
-                    isMoving = false;
-                }
+                isMoving = false;
+            }
+            else if (isMoving)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementDistance);
             }
         }
     }
