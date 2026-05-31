@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
 
-    private float yMin = -2f, yMax = 18f; // Max top & bottom values.
+    private float yMin = -1.5f, yMax = 18f; // Max top & bottom values.
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
