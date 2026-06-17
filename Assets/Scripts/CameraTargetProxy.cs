@@ -8,15 +8,22 @@ public class CameraTargetProxy : MonoBehaviour
     private float minXThreshold = -3.75f;
     private float maxXThreshold = 3.75f;
 
-    void Start()
+    private void Start()
     {
         if (playerTransform == null && transform.parent != null)
         {
             playerTransform = transform.parent;
         }
+
+        UpdateProxyPosition();
     }
 
-    void Update()
+    private void Update()
+    {
+        UpdateProxyPosition();
+    }
+
+    private void UpdateProxyPosition()
     {
         if (playerTransform == null)
         {
