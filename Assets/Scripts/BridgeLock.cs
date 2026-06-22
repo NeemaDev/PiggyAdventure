@@ -1,36 +1,13 @@
 using System;
 using UnityEngine;
 
-public class BridgeLock : MonoBehaviour
+public class BridgeLock : MonoBehaviour, IInteractable
 {
     public GameObject Bridge;
 
-    public void Interact(GameObject player)
+    public void Interact()
     {
-        PlayerInteractor interactor = player.GetComponent<PlayerInteractor>();
-
-        if (interactor != null && interactor.HasKey)
-        {
-            Unlock();
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        PlayerInteractor interactor = collision.GetComponent<PlayerInteractor>();
-        if (interactor != null)
-        {
-            interactor.SetNearbyObject(this);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        PlayerInteractor interactor = collision.GetComponent<PlayerInteractor>();
-        if (interactor != null)
-        {
-            interactor.ClearNearbyObject();
-        }
+        Unlock();
     }
 
     private void Unlock()
@@ -39,14 +16,19 @@ public class BridgeLock : MonoBehaviour
         {
             Bridge.SetActive(true);
         }
-
-        var interactors = FindObjectsByType<PlayerInteractor>(FindObjectsSortMode.None);
-        if(interactors.Length > 0)
+        else
         {
-            PlayerInteractor interactor = interactors[0];
-            interactor.ClearNearbyObject();
+            Debug.Log("Can't activate bridge. Bridge is null.");
         }
 
-        Destroy(gameObject);
+        var parent = transform.parent.gameObject;
+        if(parent != null)
+        {
+            Destroy(parent);
+        }
+        else
+        {
+            Debug.Log("Can't destroy Bridge Lock. Parent is null.");
+        }
     }
 }

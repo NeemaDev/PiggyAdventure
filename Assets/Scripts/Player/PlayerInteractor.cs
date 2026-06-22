@@ -2,29 +2,35 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    public bool HasKey = false;
-    private BridgeLock bridgeLock = null;
+    private PlayerStats stats;
+    private IInteractable nearbyInteractable;
 
     public void PickUpKey()
     {
-        HasKey = true;
+        if (stats != null)
+        {
+            stats.hasKey = true;
+        }
     }
 
     public void OnInteract()
     {
-        if(bridgeLock != null)
+        Debug.Log("Try call Interact on nearbyinteractable");
+        nearbyInteractable?.Interact();
+    }
+    
+    public void SetNearbyInteractable(IInteractable interactable) => nearbyInteractable = interactable;
+    public void ClearNearbyInteractable() => nearbyInteractable = null;
+
+    private void Awake()
+    {
+        stats = GetComponentInParent<PlayerStats>();
+
+        if (stats == null)
         {
-            bridgeLock.Interact(gameObject);
+            Debug.Log("No parent stats found!");
         }
     }
 
-    public void SetNearbyObject(BridgeLock nearbyLock)
-    {
-        bridgeLock = nearbyLock;
-    }
 
-    public void ClearNearbyObject()
-    {
-        bridgeLock = null;
-    }
 }
