@@ -37,7 +37,7 @@ public class ScareZone : MonoBehaviour
     {
         if(target != null)
         {
-            
+            Debug.Log("Draining..");
             target.DrainBravery(stats.braveryDrainPerSecond * Time.deltaTime);
         }
     }

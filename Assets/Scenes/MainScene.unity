@@ -5407,9 +5407,10 @@ GameObject:
   - component: {fileID: 1550029537}
   - component: {fileID: 1550029536}
   - component: {fileID: 1550029534}
-  - component: {fileID: 1550029535}
   - component: {fileID: 1550029540}
+  - component: {fileID: 1550029535}
   - component: {fileID: 1550029541}
+  - component: {fileID: 1550029542}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5624,6 +5625,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3699053ee1a93746b8e7248f82d7c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+--- !u!114 &1550029542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550029533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af51d0b22bcac1d449e24739c89df31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMechanics
 --- !u!1 &1585817922
 GameObject:
   m_ObjectHideFlags: 0
@@ -7276,6 +7289,10 @@ PrefabInstance:
     - target: {fileID: 626131464910873069, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431360962531935069, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4381332829755646226, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
       propertyPath: m_Name
