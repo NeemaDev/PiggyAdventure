@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class ScareZone : MonoBehaviour
 {
     private IDrainable target = null;
     private EnemyStats stats;
+    private float drainRate = 0f;
+    [SerializeField] private float drainRateMultiplier = 2f;
 
     private void Awake()
     {
@@ -11,7 +14,11 @@ public class ScareZone : MonoBehaviour
 
         if(stats == null)
         {
-            Debug.Log("No parent stats found!");
+            throw new System.NullReferenceException("No enemy stats found.");
+        }
+        else
+        {
+            drainRate = stats.braveryDrain * stats.enemyLevel;
         }
     }
 
@@ -37,8 +44,7 @@ public class ScareZone : MonoBehaviour
     {
         if(target != null)
         {
-            Debug.Log("Draining..");
-            target.DrainBravery(stats.braveryDrainPerSecond * Time.deltaTime);
+            target.DrainBravery(drainRate * Time.deltaTime * drainRateMultiplier);
         }
     }
 }

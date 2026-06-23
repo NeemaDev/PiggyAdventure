@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5363663865395574071}
   - component: {fileID: 5214970589027052367}
   - component: {fileID: 6284309066156320720}
-  - component: {fileID: 8722976678217595439}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -136,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f26663bcbc00b84084a4e78fcd1d480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  braveryDrainPerSecond: 10
+  braveryDrain: 10
   enemyLevel: 1
 --- !u!114 &6284309066156320720
 MonoBehaviour:
@@ -150,20 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cca4d96bf28839479231a71e3849f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &8722976678217595439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4381332829755646226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f26663bcbc00b84084a4e78fcd1d480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  braveryDrainPerSecond: 10
-  enemyLevel: 1
 --- !u!1 &5758725220347430296
 GameObject:
   m_ObjectHideFlags: 0

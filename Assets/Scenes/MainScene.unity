@@ -5613,6 +5613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   hasKey: 0
+  bravery: 100
 --- !u!114 &1550029541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7297,6 +7298,14 @@ PrefabInstance:
     - target: {fileID: 4381332829755646226, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363663865395574071, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581461421743631713, guid: d89e687bb3c1b774dbd6c3143e13849f, type: 3}
+      propertyPath: drainRateMultiplier
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
