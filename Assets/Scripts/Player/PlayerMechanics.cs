@@ -25,6 +25,15 @@ public class PlayerMechanics : MonoBehaviour, IDrainable, IKillable
         }
     }
 
+    public void RestoreBravery(float amount)
+    {
+        if(stats != null && stats.bravery < stats.maxBravery)
+        {
+            stats.bravery += amount;
+            Debug.Log($"Bravery restored by {amount}. New Bravery: {stats.bravery}");
+        }
+    }
+
     private void Awake()
     {
         stats = GetComponentInParent<PlayerStats>();

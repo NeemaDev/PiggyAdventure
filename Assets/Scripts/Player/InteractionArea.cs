@@ -11,7 +11,6 @@ public class InteractionArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision detected.");
         IInteractable interactable = collision.GetComponent<IInteractable>();
 
         if (interactable != null)
