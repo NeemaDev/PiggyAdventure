@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f26663bcbc00b84084a4e78fcd1d480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  braveryDrain: 10
-  enemyLevel: 1
+  baseSpeed: 2
+  _enemyLevel: 1
+  _braveryDrain: 10
 --- !u!114 &6284309066156320720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cca4d96bf28839479231a71e3849f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5758725220347430296
 GameObject:
   m_ObjectHideFlags: 0

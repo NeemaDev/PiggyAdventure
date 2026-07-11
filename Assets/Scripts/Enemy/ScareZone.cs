@@ -18,7 +18,7 @@ public class ScareZone : MonoBehaviour
         }
         else
         {
-            drainRate = stats.braveryDrain * stats.enemyLevel;
+            drainRate = stats.BraveryDrain * stats.EnemyLevel;
         }
     }
 
