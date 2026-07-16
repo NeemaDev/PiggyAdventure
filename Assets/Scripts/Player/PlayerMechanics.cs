@@ -5,6 +5,8 @@ public class PlayerMechanics : MonoBehaviour, IDrainable, IKillable
 {
     PlayerStats stats;
 
+    public Vector2 Position => transform.position;
+
     public void Die()
     {
         Destroy(gameObject,0.05f);

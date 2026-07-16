@@ -8,6 +8,8 @@ public class ScareZone : MonoBehaviour
     private float drainRate = 0f;
     [SerializeField] private float drainRateMultiplier = 2f;
 
+    public LayerMask WallLayer;
+
     private void Awake()
     {
         stats = GetComponentInParent<EnemyStats>();
@@ -20,6 +22,12 @@ public class ScareZone : MonoBehaviour
         {
             drainRate = stats.BraveryDrain * stats.EnemyLevel;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.hotPink;
+        Gizmos.DrawWireSphere(transform.position, Mathf.Round(transform.localScale.x / 2));       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +52,23 @@ public class ScareZone : MonoBehaviour
     {
         if(target != null)
         {
-            target.DrainBravery(drainRate * Time.deltaTime * drainRateMultiplier);
+            // Check if the target is in line-of-sight via raycast.
+            Vector2 targetPosition = target.Position;
+            Vector2 heading = targetPosition - (Vector2)transform.position;
+            float distance = heading.magnitude;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, heading.normalized, distance, WallLayer);
+
+            if(hit.collider != null)
+            {
+                // Hit a wall.
+                Debug.DrawRay(transform.position, heading, Color.red);
+            }
+            else
+            {
+                // Hit the player, go drain them.
+                target.DrainBravery(drainRate * Time.deltaTime * drainRateMultiplier);
+            }
+
         }
     }
 }
