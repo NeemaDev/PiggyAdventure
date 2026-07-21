@@ -20,24 +20,23 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        if(spawns == null || spawns.Length == 0)
+        if (spawns == null || spawns.Length == 0)
         {
             throw new System.NullReferenceException("No spawn points defined.");
         }
 
-        while(spawnedEnemies < enemiesToSpawn && attempts <= maxAttempts)
+        while (spawnedEnemies < enemiesToSpawn && attempts <= maxAttempts)
         {
-            int randomIndex = Random.Range(0,spawns.Length);        
+            int randomIndex = Random.Range(0, spawns.Length);
             Vector2 spawnLocation = spawns[randomIndex];
-            
+
             Instantiate(enemyPrefab, spawnLocation, Quaternion.identity);
             spawnedEnemies++;
-            Debug.Log($"Enemy spawned at {spawnLocation.x}, {spawnLocation.y}");
 
             attempts++;
         }
 
-        if(attempts >= maxAttempts)
+        if (attempts >= maxAttempts)
         {
             Debug.Log("Max enemy spawning attempts reached.");
         }

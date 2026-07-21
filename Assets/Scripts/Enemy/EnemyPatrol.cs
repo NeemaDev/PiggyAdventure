@@ -43,10 +43,8 @@ public class EnemyPatrol : MonoBehaviour
 
             if (hit.distance > bestTargetDistance)
             {
-                Debug.Log($"Best target: {hit.point}");
                 bestTarget = hit.point + (hit.normal * 0.5f);
                 bestTargetDistance = hit.distance;
-                Debug.Log($"Set distance {hit.distance} and taget: {bestTarget}");
             }
         }
 

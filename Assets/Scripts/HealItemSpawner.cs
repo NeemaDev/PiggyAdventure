@@ -47,7 +47,6 @@ public class HealItemSpawner : MonoBehaviour
             {
                 Instantiate(itemPrefab, position, Quaternion.identity);
                 spawnedItems++;
-                Debug.Log($"Spawned item at {position.x}, {position.y}");
             }
         }
 
