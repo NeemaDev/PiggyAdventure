@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private Transform quicksandCenter;
 
+    public bool CanMove { get; set; } = true;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -19,7 +21,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MovePlayer();
+        if (CanMove)
+        {
+            MovePlayer();
+        }
     }
 
     public void OnMove(InputValue value)
