@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -8,10 +9,6 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn Locations")]
     public Vector2[] spawns;
-
-    private int spawnedEnemies = 0;
-    private int attempts = 0;
-    private int maxAttempts = 1000;
 
     private void Start()
     {
@@ -25,20 +22,28 @@ public class EnemySpawner : MonoBehaviour
             throw new System.NullReferenceException("No spawn points defined.");
         }
 
-        while (spawnedEnemies < enemiesToSpawn && attempts <= maxAttempts)
+        int actualAmountToSpawn = Mathf.Min(enemiesToSpawn, spawns.Length);
+
+        List<int> availableSpawnIndices = new List<int>();
+        for (int index = 0; index < spawns.Length; index++)
         {
-            int randomIndex = Random.Range(0, spawns.Length);
-            Vector2 spawnLocation = spawns[randomIndex];
-
-            Instantiate(enemyPrefab, spawnLocation, Quaternion.identity);
-            spawnedEnemies++;
-
-            attempts++;
+            availableSpawnIndices.Add(index);
         }
 
-        if (attempts >= maxAttempts)
+        int spawnedEnemies = 0;
+
+        while (spawnedEnemies < actualAmountToSpawn)
         {
-            Debug.Log("Max enemy spawning attempts reached.");
+            Debug.Log($"Spawned:{spawnedEnemies}, ToSpawn: {actualAmountToSpawn}");
+
+            int randomIndexOfAvilableIndices = Random.Range(0, availableSpawnIndices.Count);
+            int actualSpawnIndex = availableSpawnIndices[randomIndexOfAvilableIndices];
+            Vector2 spawnLocation = spawns[actualSpawnIndex];
+
+            Instantiate(enemyPrefab, spawnLocation, Quaternion.identity);
+
+            availableSpawnIndices.RemoveAt(randomIndexOfAvilableIndices);
+            spawnedEnemies++;
         }
     }
 }
