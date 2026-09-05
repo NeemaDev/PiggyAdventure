@@ -8,7 +8,7 @@ public class GrabRangeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            parent.StartGrabPlayer(collision.transform);
+            parent.StartGrabPlayer(collision.gameObject);
         }
     }
 

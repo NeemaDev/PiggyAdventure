@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Analytics;
 using UnityEngine;
 
 public class PlayerMechanics : MonoBehaviour, IDrainable, IKillable
@@ -9,12 +10,15 @@ public class PlayerMechanics : MonoBehaviour, IDrainable, IKillable
 
     public void Die()
     {
-        Destroy(gameObject, 0.05f);
+        if (stats != null && !stats.isGodMode)
+        {
+            Destroy(gameObject, 0.05f);
+        }
     }
 
     public void DrainBravery(float amount)
     {
-        if (stats != null)
+        if (stats != null && !stats.isGodMode)
         {
             stats.bravery -= amount;
             Debug.Log($"Bravery drained by {amount}. New Bravery: {stats.bravery}");

@@ -27,11 +27,11 @@ public class DesertEnemy : MonoBehaviour
         }
     }
 
-    public void StartGrabPlayer(Transform playerTransform)
+    public void StartGrabPlayer(GameObject player)
     {
         if (grabCoroutine == null)
         {
-            grabCoroutine = StartCoroutine(GrabPlayer(playerTransform));
+            grabCoroutine = StartCoroutine(GrabPlayer(player));
         }
     }
 
@@ -45,41 +45,46 @@ public class DesertEnemy : MonoBehaviour
         }
     }
 
-    private IEnumerator GrabPlayer(Transform playerTransform)
+    private IEnumerator GrabPlayer(GameObject player)
     {
-        isGrabbyActive = true;
-        float telegraphTimer = 0f;
-        float telegraphDuration = 1.0f;
-
-        while (telegraphTimer < telegraphDuration)
+        Transform playerTransform = player.transform;
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        if (playerStats != null && !playerStats.isGodMode)
         {
-            telegraphTimer += Time.deltaTime;
-            float percent = telegraphTimer / telegraphDuration;
+            isGrabbyActive = true;
+            float telegraphTimer = 0f;
+            float telegraphDuration = 1.0f;
 
-            grabbyPosition = Vector3.Lerp(transform.position, playerTransform.position, percent);
+            while (telegraphTimer < telegraphDuration)
+            {
+                telegraphTimer += Time.deltaTime;
+                float percent = telegraphTimer / telegraphDuration;
 
-            yield return null;
+                grabbyPosition = Vector3.Lerp(transform.position, playerTransform.position, percent);
 
+
+                yield return null;
+            }
+
+            // Lock player movement.
+            PlayerController controller = playerTransform.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.CanMove = false;
+            }
+
+            // Then drag.
+            while (Vector3.Distance(playerTransform.position, transform.position) > 0.1f)
+            {
+                playerTransform.position = Vector3.MoveTowards(playerTransform.position, transform.position, pullFactor * Time.deltaTime);
+
+                grabbyPosition = playerTransform.position;
+
+                yield return null;
+            }
+
+            isGrabbyActive = false;
+            grabCoroutine = null;
         }
-
-        // Lock player movement.
-        PlayerController controller = playerTransform.GetComponent<PlayerController>();
-        if (controller != null)
-        {
-            controller.CanMove = false;
-        }
-
-        // Then drag.
-        while (Vector3.Distance(playerTransform.position, transform.position) > 0.1f)
-        {
-            playerTransform.position = Vector3.MoveTowards(playerTransform.position, transform.position, pullFactor * Time.deltaTime);
-
-            grabbyPosition = playerTransform.position;
-
-            yield return null;
-        }
-
-        isGrabbyActive = false;
-        grabCoroutine = null;
     }
 }
