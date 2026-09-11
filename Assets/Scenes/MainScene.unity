@@ -12011,8 +12011,8 @@ Transform:
   m_GameObject: {fileID: 1432810695}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 18, y: 6, z: 1}
+  m_LocalPosition: {x: -0.006, y: 4.9888, z: 0}
+  m_LocalScale: {x: -0.5, y: -0.5, z: -0.033653714}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 868360664}
@@ -12066,8 +12066,8 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.3207547, g: 0.30808637, b: 0.26527825, a: 1}
+  m_Sprite: {fileID: -7822838542444585053, guid: 205ded9dd6235524798e7beb0bda1d86, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13519,6 +13519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a16c8773a679a48a13f828826e8c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  isGodMode: 0
   hasKey: 0
   bravery: 100
   maxBravery: 100
