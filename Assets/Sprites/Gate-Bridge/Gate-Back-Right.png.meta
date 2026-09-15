@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cea960eaebce05d4aa4422025d1b1ae5
+guid: a90b259e530556b4284f21ecb943eeaa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2213528440743952749
-    second: Gate-Pillars-Right_0
+      213: 3373450029437193678
+    second: Gate-Back-Right_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gate-Pillars-Right_0
+      name: Gate-Back-Right_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 9
-        width: 284
-        height: 439
+        x: 4
+        y: 12
+        width: 194
+        height: 314
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39e7b356c97f741e0800000000000000
-      internalID: -2213528440743952749
+      spriteID: ecd8220bde6e0de20800000000000000
+      internalID: 3373450029437193678
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gate-Pillars-Right_0: -2213528440743952749
+      Gate-Back-Right_0: 3373450029437193678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
