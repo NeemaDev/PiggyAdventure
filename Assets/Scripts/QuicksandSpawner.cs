@@ -83,7 +83,8 @@ public class QuicksandSpawner : MonoBehaviour
             if (TryFindValidPosition(out Vector2 pos))
             {
                 placedPositions.Add(pos);
-                GameObject go = Instantiate(quickSandPrefab, new Vector3(pos.x, pos.y, 0f), Quaternion.identity);
+                Quaternion randomRotationZ = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward);
+                GameObject go = Instantiate(quickSandPrefab, new Vector3(pos.x, pos.y, 0f), randomRotationZ);
                 spawned.Add(go);
             }
             else
