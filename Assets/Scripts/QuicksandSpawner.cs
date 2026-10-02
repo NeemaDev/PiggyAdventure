@@ -6,7 +6,7 @@ public class QuicksandSpawner : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject quickSandPrefab;
-    [SerializeField] private int spawnCount = 5;
+    [SerializeField] private int spawnCount = 8;
 
     [Header("Spawn Area")]
     [SerializeField] private Rect spawnArea = new Rect(-9f, 12.25f, 18f, 5.55f);
@@ -20,8 +20,8 @@ public class QuicksandSpawner : MonoBehaviour
         new Rect(-1f,14f, 2f,2f)
     };
 
-    private float diameter = 3f;
-    private float maxOverlap = 1f;
+    private float diameter = 1.5f;
+    private float maxOverlap = -0.5f;
     private int maxAttemptsPerObject = 500;
     private Rect effectiveArea;
     private readonly List<Vector2> placedPositions = new List<Vector2>();
