@@ -4877,8 +4877,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552962262}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.18751, y: 15.66423, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.19013, y: 5.6490707, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4887,7 +4887,7 @@ Transform:
   - {fileID: 341601906}
   - {fileID: 459902046}
   - {fileID: 1450815598}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 868360664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561630369
 GameObject:
@@ -5436,7 +5436,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3639e0c33d94fb648adda46ac8f4973f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  pullFactor: 5
+  telegraphDuration: 1
+  trackPlayerDuringTelegraph: 0
+  catchRadius: 0.75
+  pullSpeed: 1.1
+  pullPauseDuration: 2
+  progressPerPress: 0.35
+  progressDecayPerSecond: 0.2
+  regrabCooldown: 1
+  pushDistance: 1.5
+  pushDuration: 0.2
 --- !u!1 &610366447
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,6 +7918,7 @@ Transform:
   - {fileID: 683302576}
   - {fileID: 1415448477}
   - {fileID: 1432810696}
+  - {fileID: 552962263}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &886190637
@@ -13209,6 +13219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 5
   quicksandDragFactor: 0.5
+  struggleAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!50 &1550029536
 Rigidbody2D:
   serializedVersion: 5
@@ -17816,7 +17827,6 @@ SceneRoots:
   - {fileID: 1237728360}
   - {fileID: 1863722871}
   - {fileID: 868360664}
-  - {fileID: 552962263}
   - {fileID: 1550029539}
   - {fileID: 983815408}
   - {fileID: 1115323762}

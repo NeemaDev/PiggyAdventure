@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float quicksandDragFactor = 0.5f;
+    [SerializeField] private InputActionReference struggleAction;
 
     private Rigidbody2D rb;
     private Vector2 currentMoveInput = Vector2.zero;
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private Transform quicksandCenter;
 
+    public event Action StrugglePressed;
     public bool CanMove { get; set; } = true;
 
     void Start()
@@ -24,6 +27,10 @@ public class PlayerController : MonoBehaviour
         if (CanMove)
         {
             MovePlayer();
+        }
+        else if (!CanMove && struggleAction.action.WasPressedThisFrame())
+        {
+            StrugglePressed?.Invoke();
         }
     }
 
@@ -71,6 +78,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable() => struggleAction.action.Enable();
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
