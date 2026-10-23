@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
     private Transform quicksandCenter;
+    private CircleCollider2D quicksandCollider;
 
     public event Action StrugglePressed;
     public bool CanMove { get; set; } = true;
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             // Assign quicksand center to trigger movement adjustment in quicksand.
             quicksandCenter = collision.transform;
+            quicksandCollider = collision.GetComponent<CircleCollider2D>();
         }
     }
 
@@ -98,6 +100,8 @@ public class PlayerController : MonoBehaviour
             // Resetting linear velocity after leaving quicksand 
             // (it stays on the last set value and continues to drag the player).
             rb.linearVelocity = Vector2.zero;
+            quicksandCenter = null;
+            quicksandCollider = null;
         }
     }
 }
