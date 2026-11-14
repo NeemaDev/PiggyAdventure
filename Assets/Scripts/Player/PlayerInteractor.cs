@@ -18,7 +18,7 @@ public class PlayerInteractor : MonoBehaviour
         Debug.Log("Try call Interact on nearbyinteractable");
         nearbyInteractable?.Interact();
     }
-    
+
     public void SetNearbyInteractable(IInteractable interactable) => nearbyInteractable = interactable;
     public void ClearNearbyInteractable() => nearbyInteractable = null;
 
